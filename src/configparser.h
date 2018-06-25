@@ -1,7 +1,7 @@
 /*
     This file is part of KDE.
 
-    Copyright (c) 2009 Eckhart Wörner <ewoerner@kde.org>
+    Copyright (c) 2018 Ralf Habacker <ralf.habacker@freenet.de>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -21,37 +21,22 @@
 
 */
 
-#ifndef ATTICA_PARSER_H
-#define ATTICA_PARSER_H
+#ifndef ATTICA_CONFIGPARSER_H
+#define ATTICA_CONFIGPARSER_H
 
-#include <QtCore/QStringList>
-#if QT_VERSION >= 0x050000
-#include <QtCore/QXmlStreamReader>
-#else
-// WARNING: QXmlStreamReader cannot be forward declared (Qt 4.5)
-#include <QtXml/QXmlStreamReader>
-#endif // QT_VERSION
+#include "config.h"
+#include "parser.h"
 
-#include "listjob.h"
-
+#include "atticaclient_export.h"
 
 namespace Attica {
 
-template <class T>
-class ATTICA_EXPORT Parser {
-public:
-    T parse(const QString& xml);
-    typename T::List parseList(const QString& xml);
-    Metadata metadata() const;
-    virtual ~Parser();
-
-protected:
-    virtual QStringList xmlElement() const = 0;
-    virtual T parseXml(QXmlStreamReader& xml) = 0;
-
+class Config::Parser : public Attica::Parser<Config>
+{
 private:
-    void parseMetadataXml(QXmlStreamReader& xml);
-    Metadata m_metadata;
+    Config parseXml(QXmlStreamReader& xml);
+    QStringList xmlElement() const;
+
 };
 
 }

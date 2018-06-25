@@ -36,6 +36,8 @@ set(ocsclient_SRCS
    categoryparser.cpp
    comment.cpp
    commentparser.cpp
+   config.cpp
+   configparser.cpp
    content.cpp
    contentparser.cpp
    deletejob.cpp
@@ -125,6 +127,8 @@ set(ATTICA_HEADERS
     ${CMAKE_CURRENT_BINARY_DIR}/atticaclient_export.h
     atticautils.h
     comment.h
+    config.h
+    configparser.h
     content.h
     category.h
     deletejob.h
