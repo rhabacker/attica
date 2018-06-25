@@ -27,15 +27,13 @@
 #include "config.h"
 #include "parser.h"
 
-#include "atticaclient_export.h"
-
 namespace Attica {
 
 class Config::Parser : public Attica::Parser<Config>
 {
 private:
-    Config parseXml(QXmlStreamReader& xml);
-    QStringList xmlElement() const;
+    Config parseXml(QXmlStreamReader& xml) override;
+    QStringList xmlElement() const override;
 
 };
 
