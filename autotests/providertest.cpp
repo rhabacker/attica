@@ -40,7 +40,7 @@ public:
 private:
     void initProvider(const QUrl &url);
 
-private slots:
+private Q_SLOTS:
     void testFetchValidProvider();
     void testFetchInvalidProvider();
 
@@ -129,6 +129,7 @@ void ProviderTest::slotTimeout()
 
 void ProviderTest::testFetchInvalidProvider()
 {
+    // TODO error state could only be checked indirectly by timeout
     initProvider(QUrl(QLatin1String("https://invalid-url.org/ocs/providers.xml")));
     m_timer.singleShot(5000, this, SLOT(slotTimeout()));
     m_eventloop->exec();
