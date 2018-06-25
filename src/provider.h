@@ -58,6 +58,7 @@ class BuildServiceJobOutput;
 class BuildServiceJob;
 class BuildService;
 class PrivateData;
+class Config;
 class Content;
 class DownloadItem;
 class Distribution;
@@ -270,6 +271,8 @@ class ATTICA_EXPORT Provider
       @return the job that will contain the success of the login as metadata
     */
     PostJob* checkLogin(const QString& user, const QString& password);
+
+    ItemJob<Config> *requestConfig();
 
     // Person part of OCS
 
@@ -668,6 +671,7 @@ class ATTICA_EXPORT Provider
     // Convenience overload
     QNetworkRequest createRequest(const QString& path);
 
+    ItemJob<Config> *doRequestConfig(const QUrl &url);
     ItemJob<Person>* doRequestPerson(const QUrl& url);
     ItemJob<AccountBalance>* doRequestAccountBalance(const QUrl& url);
     ListJob<Person>* doRequestPersonList(const QUrl& url);
@@ -678,7 +682,7 @@ class ATTICA_EXPORT Provider
     ListJob<Topic>* doRequestTopicList(const QUrl& url);
     ListJob<Message>* doRequestMessageList(const QUrl& url);
 
-  private:
+private:
     class Private;
     QExplicitlySharedDataPointer<Private> d;
 
